@@ -1,43 +1,24 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
-// Function to calculate CGPA
-double calculateCGPA(const vector<double>& grades, const vector<int>& credits) {
-    double totalGradePoints = 0;
-    int totalCredits = 0;
-
-    for (size_t i = 0; i < grades.size(); ++i) {
-        totalGradePoints += grades[i] * credits[i];
-        totalCredits += credits[i];
-    }
-
-    if (totalCredits == 0) {
-        return 0; // Avoid division by zero
-    }
-
-    return totalGradePoints / totalCredits;
-}
-
 int main() {
     int numCourses;
+    double totalPoints = 0.0;
+
     cout << "Enter the number of courses: ";
     cin >> numCourses;
 
-    vector<double> grades(numCourses);
-    vector<int> credits(numCourses);
-
-    for (int i = 0; i < numCourses; ++i) {
-        cout << "Enter grade for course " << (i + 1) << ": ";
-        cin >> grades[i];
-        cout << "Enter credits for course " << (i + 1) << ": ";
-        cin >> credits[i];
+    for (int i = 0; i < numCourses; i++) {
+        double points;
+        cout << "Enter grade points for course " << (i + 1) << ": ";
+        cin >> points;
+        totalPoints += points;
     }
 
-    double cgpa = calculateCGPA(grades, credits);
+    double cgpa = totalPoints / numCourses;
 
-    cout << "Your CGPA is: " << cgpa << endl;
+    cout << "CGPA: " << cgpa << endl;
 
     return 0;
 }
